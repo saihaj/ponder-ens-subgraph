@@ -8,7 +8,8 @@
     "start": "ponder start",
     "codegen": "ponder codegen",
     "lint": "eslint .",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@ponder/core": "^0.2.16",
@@ -18,6 +19,7 @@
     "@types/node": "^20.9.0",
     "eslint": "^8.53.0",
     "eslint-config-ponder": "^0.2.16",
+    "prettier": "^3.2.5",
     "typescript": "^5.2.2"
   },
   "engines": {
