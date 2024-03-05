@@ -242,8 +242,8 @@ export default createSchema((p) => ({
 
     expiryDate: p.bigint().optional(),
 
-    registration: p.one("Registration.domainId"),
-    wrappedDomain: p.one("WrappedDomain.domainId"),
+    registration: p.many("Registration.domainId"),
+    wrappedDomain: p.many("WrappedDomain.domainId"),
 
     events: p.many("DomainEvent.domainId"),
   }),
