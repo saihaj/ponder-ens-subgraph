@@ -1,7 +1,22 @@
 import { ponder } from "@/generated";
 
-ponder.on("Resolver:AuthorisationChanged", async ({ event, context }) => {
-  console.log(event.args);
+ponder.on("Resolver:AddrChanged", async ({ event, context }) => {
+  const account = await context.db.Account.upsert({
+    id: event.args.a.toLowerCase(),
+  });
+
+  const domain = await context.db.Domain.upsert({
+    id: event.args.node.toLowerCase(),
+    create: {
+      ownerId: account.id,
+      subdomainCount: 0,
+    },
+  });
+
+  const resolver = await context.db.Resolver.upsert({
+    id: event.args.node.toLowerCase(),
+    create: {},
+  });
 });
 
 ponder.on(
