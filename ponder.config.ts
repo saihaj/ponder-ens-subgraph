@@ -26,29 +26,29 @@ export default createConfig({
       startBlock: 3327417,
     },
     Resolver: { network: "mainnet", abi: ResolverAbi, startBlock: 3327417 },
-    BaseRegistrar: {
-      network: "mainnet",
-      address: "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
-      abi: BaseRegistrarAbi,
-      startBlock: 9380410,
-    },
-    EthRegistrarControllerOld: {
-      network: "mainnet",
-      address: "0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5",
-      abi: EthRegistrarControllerOldAbi,
-      startBlock: 9380471,
-    },
-    EthRegistrarController: {
-      network: "mainnet",
-      address: "0x253553366Da8546fC250F225fe3d25d0C782303b",
-      abi: EthRegistrarControllerAbi,
-      startBlock: 16925618,
-    },
-    NameWrapper: {
-      network: "mainnet",
-      address: "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401",
-      abi: NameWrapperAbi,
-      startBlock: 16925608,
-    },
+    // BaseRegistrar: {
+    //   network: "mainnet",
+    //   address: "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+    //   abi: BaseRegistrarAbi,
+    //   startBlock: 9380410,
+    // },
+    // EthRegistrarControllerOld: {
+    //   network: "mainnet",
+    //   address: "0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5",
+    //   abi: EthRegistrarControllerOldAbi,
+    //   startBlock: 9380471,
+    // },
+    // EthRegistrarController: {
+    //   network: "mainnet",
+    //   address: "0x253553366Da8546fC250F225fe3d25d0C782303b",
+    //   abi: EthRegistrarControllerAbi,
+    //   startBlock: 16925618,
+    // },
+    // NameWrapper: {
+    //   network: "mainnet",
+    //   address: "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401",
+    //   abi: NameWrapperAbi,
+    //   startBlock: 16925608,
+    // },
   },
 });
