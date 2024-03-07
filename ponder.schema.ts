@@ -3,9 +3,9 @@ import { createSchema } from "@ponder/core";
 export default createSchema((p) => ({
   DomainEvent: p.createTable({
     id: p.string(),
-    blockNumber: p.int(),
+    blockNumber: p.bigint(),
     domainId: p.string().references("Domain.id"),
-    domain: p.string(),
+    domain: p.one("domainId"),
     transactionID: p.string(),
   }),
   Transfer: p.createTable({
@@ -25,27 +25,27 @@ export default createSchema((p) => ({
     domainEvent: p.one("domainEventId"),
   }),
   NewResolver: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     resolverId: p.string().references("Resolver.id"),
     resolver: p.one("resolverId"),
     domainEventId: p.string().references("DomainEvent.id"),
     domainEvent: p.one("domainEventId"),
   }),
   NewTTL: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     domainEventId: p.string().references("DomainEvent.id"),
     domainEvent: p.one("domainEventId"),
     ttl: p.bigint(),
   }),
   WrappedTransfer: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     domainEventId: p.string().references("DomainEvent.id"),
     domainEvent: p.one("domainEventId"),
     ownerId: p.string().references("Account.id"),
     owner: p.one("ownerId"),
   }),
   NameWrapped: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     name: p.string().optional(),
     fuses: p.int(),
     ownerId: p.string().references("Account.id"),
@@ -55,20 +55,20 @@ export default createSchema((p) => ({
     domainEvent: p.one("domainEventId"),
   }),
   NameUnwrapped: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     domainEventId: p.string().references("DomainEvent.id"),
     domainEvent: p.one("domainEventId"),
     ownerId: p.string().references("Account.id"),
     owner: p.one("ownerId"),
   }),
   FusesSet: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     domainEventId: p.string().references("DomainEvent.id"),
     domainEvent: p.one("domainEventId"),
     fuses: p.int(),
   }),
   ExpiryExtended: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     domainEventId: p.string().references("DomainEvent.id"),
     domainEvent: p.one("domainEventId"),
     expiryDate: p.bigint(),
@@ -84,7 +84,7 @@ export default createSchema((p) => ({
     owner: p.one("ownerId"),
   }),
   Account: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     wrappedDomains: p.many("WrappedDomain.ownerId"),
     registrations: p.many("Registration.registrantId"),
     domains: p.many("Domain.ownerId"),
@@ -215,7 +215,7 @@ export default createSchema((p) => ({
     newOwner: p.one("newOwnerId"),
   }),
   Domain: p.createTable({
-    id: p.string(),
+    id: p.hex(),
     name: p.string().optional(),
     labelName: p.string().optional(),
     labelhash: p.string().optional(),
