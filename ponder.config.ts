@@ -1,6 +1,5 @@
 import { createConfig } from "@ponder/core";
 import { http } from "viem";
-
 import { EnsRegistryAbi } from "./abis/EnsRegistryAbi";
 import { ResolverAbi } from "./abis/ResolverAbi";
 import { BaseRegistrarAbi } from "./abis/BaseRegistrarAbi";
@@ -10,7 +9,11 @@ import { NameWrapperAbi } from "./abis/NameWrapperAbi";
 
 export default createConfig({
   networks: {
-    mainnet: { chainId: 1, transport: http(process.env.PONDER_RPC_URL_1) },
+    mainnet: {
+      chainId: 1,
+      transport: http(process.env.PONDER_RPC_URL_1),
+      maxRequestsPerSecond: 100,
+    },
   },
   contracts: {
     ENSRegistry: {
@@ -25,7 +28,26 @@ export default createConfig({
       abi: EnsRegistryAbi,
       startBlock: 3327417,
     },
-    Resolver: { network: "mainnet", abi: ResolverAbi, startBlock: 3327417 },
+    Resolver: {
+      network: "mainnet",
+      abi: ResolverAbi,
+      startBlock: 3327417,
+      filter: {
+        event: [
+          "ABIChanged",
+          "AddrChanged",
+          "AddressChanged",
+          "AuthorisationChanged",
+          "ContenthashChanged",
+          "InterfaceChanged",
+          "NameChanged",
+          "PubkeyChanged",
+          "TextChanged(bytes32 indexed node, string indexed indexedKey, string key)",
+          "TextChanged(bytes32 indexed node, string indexed indexedKey, string key, string value)",
+          "VersionChanged",
+        ],
+      },
+    },
     // BaseRegistrar: {
     //   network: "mainnet",
     //   address: "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
