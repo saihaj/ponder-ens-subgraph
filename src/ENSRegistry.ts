@@ -121,10 +121,10 @@ ponder.on("ENSRegistry:NewOwner", async ({ event, context }) => {
   });
 });
 
-// ponder.on("ENSRegistry:NewResolver", async ({ event, context }) => {
-//   console.log(event.args);
-// });
+ponder.on("ENSRegistry:NewResolver", async ({ event, context }) => {
+  console.log(event.args);
+});
 
-// ponder.on("ENSRegistry:NewTTL", async ({ event, context }) => {
-//   console.log(event.args);
-// });
+ponder.on("ENSRegistry:NewTTL", async ({ event, context }) => {
+  console.log(event.args);
+});
